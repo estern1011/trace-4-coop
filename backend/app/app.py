@@ -36,7 +36,7 @@ def get_companies():
         print(company_data)
         return jsonify(message="Found {} companies".format(len(company_data)), data=company_data), 200
 
-@app.route('/companies/<string:company_id>', methods=['GET', 'POST'])
+@app.route('/companies/<string:company_id>/position', methods=['GET', 'POST'])
 def get_postings(company_id):
     if request.method == 'POST':
         form = request.json
