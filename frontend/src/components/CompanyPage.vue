@@ -6,20 +6,30 @@
       img-alt="Image"
       img-top
       tag="article"
-      style="max-width: 20rem;"
       class="mb-2"
     >
-      <b-card-text>Some quick example text to build on the card title and make up the bulk of the card's content.</b-card-text>
+      <b-card-text>
+        <b-table striped hover :items="items"></b-table>
+      </b-card-text>
 
-      <b-button href="#" variant="primary">Go somewhere</b-button>
+      <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
     </b-card>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      items: [
+        { position: "Software Developer", rating: "5/5" },
+        { position: "Data Scientist", rating: "5/5" },
+        { position: "UI/UX", rating: "5/5" }
+      ]
+    };
+  }
+};
 </script>
 
 <style>
-
 </style>
