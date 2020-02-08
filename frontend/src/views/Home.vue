@@ -1,6 +1,10 @@
 <template>
   <div id="app">
     <b-container class="bv-example-row">
+      <b-row>
+        <b-col> <h5> Company Name </h5> </b-col>
+        <b-col> <h5> Location </h5> </b-col>
+      </b-row>
       <b-row v-for="item in this.info" :key="item._id">
         <b-col> {{ item.company_name }} </b-col>
         <b-col> {{ item.location }} </b-col>
