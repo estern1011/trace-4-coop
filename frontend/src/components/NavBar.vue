@@ -9,9 +9,8 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <router-link to="/about">
-            <b-nav-item href="/about">About</b-nav-item>
-          </router-link>
+            <b-nav-item to="/about">About</b-nav-item>
+            <b-nav-item to="/submit">Submit a Review</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
