@@ -29,7 +29,13 @@ class DatabaseConnection():
 
     def get_all_postings_for_company(self, company_id):
         res = self.posting_store.find({'company_id': company_id})
-        return [x for x in res]
+        print(res)
+        lis = []
+        for x in res:
+            temp = x
+            temp['_id'] = str(x['_id'])
+            lis.append(temp)
+        return lis
 
     def add_new_review(self, company_id, position_id, form):
         form['company_id'] = company_id
@@ -38,8 +44,17 @@ class DatabaseConnection():
 
     def get_all_postings_for_company(self, company_id):
         res = self.review_store.find({'company_id': company_id})
-        return [x for x in res]
+        print(res)
+                for x in res:
+            temp = x
+            temp['_id'] = str(x['_id'])
+            lis.append(temp)
+        return lis
 
     def get_all_postings_for_posting(self, position_id):
         res = self.review_store.find({'position_id': position_id})
-        return [x for x in res]
+                for x in res:
+            temp = x
+            temp['_id'] = str(x['_id'])
+            lis.append(temp)
+        return lis
