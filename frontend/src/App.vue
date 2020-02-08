@@ -2,7 +2,6 @@
   <div id="app">
     <NavBar />
     <!-- {companies_page.map(company => <CompanyPage />)} -->
-    <CompanyPage />
     <router-view></router-view>
   </div>
 </template>
@@ -10,7 +9,6 @@
 <script>
 import Vue from "vue";
 import NavBar from "./components/NavBar.vue";
-import CompanyPage from "./components/CompanyPage.vue"
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -22,8 +20,7 @@ Vue.use(IconsPlugin);
 export default {
   name: "App",
   components: {
-    NavBar,
-    CompanyPage
+    NavBar
   }
 };
 </script>

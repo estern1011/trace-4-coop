@@ -1,7 +1,7 @@
-import HelloWorld from './views/HelloWorld'
+import About from './views/About.vue'
 
 const routes = [
-  { path: "/HelloWorld", component: HelloWorld }
+  { path: "/about", component: About }
 ];
 
 export default routes
