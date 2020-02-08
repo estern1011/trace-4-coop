@@ -1,5 +1,6 @@
 <template>
     <b-navbar toggleable="lg" type="dark" variant="info">
+<<<<<<< HEAD
       <b-navbar-brand href="#">NavBar</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -34,6 +35,15 @@
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
+=======
+      <b-navbar-brand href="#">Co-op Reviews</b-navbar-brand>
+      <b-navbar-nav>
+          <b-navbar-item href="#"> About </b-navbar-item>
+      </b-navbar-nav>
+      <b-navbar-nav class="ml-auto">
+          <b-navbar-item href="#"> Log In </b-navbar-item>
+      </b-navbar-nav>
+>>>>>>> 9fa8a1c26951ee4102cf6dfc41944b541a1e442e
     </b-navbar>
 </template>
 
