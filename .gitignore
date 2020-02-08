@@ -3,3 +3,5 @@ backend/venv/
 include/
 lib/
 bin/
+*.pyc
+./.gitignore
