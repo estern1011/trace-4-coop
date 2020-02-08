@@ -45,6 +45,7 @@ class DatabaseConnection():
     def get_all_postings_for_company(self, company_id):
         res = self.review_store.find({'company_id': company_id})
         print(res)
+        lis = []
         for x in res:
             temp = x
             temp['_id'] = str(x['_id'])
@@ -53,6 +54,8 @@ class DatabaseConnection():
 
     def get_all_postings_for_posting(self, position_id):
         res = self.review_store.find({'position_id': position_id})
+        print(res)
+        lis = []
         for x in res:
             temp = x
             temp['_id'] = str(x['_id'])
