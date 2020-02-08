@@ -8,7 +8,6 @@ const routes = [
   { path: "/", component: Home },
   { path: "/about", component: About },
   { path: "/companies/:company_name", name: 'companies', component: CompanyPage},
-  { path: "/companies/:company_name/position/:position_name", name: 'position', component: Position}
 ];
 
 export default routes
