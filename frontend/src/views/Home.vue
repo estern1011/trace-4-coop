@@ -6,7 +6,9 @@
         <b-col> <h5> Location </h5> </b-col>
       </b-row>
       <b-row v-for="item in this.info" :key="item._id">
-        <b-col> {{ item.company_name }} </b-col>
+        <router-link :to="{ name: 'companies', params: {company_name: item.company_name, id: item._id}}">
+          <b-col> {{ item.company_name }} </b-col>
+          </router-link>
         <b-col> {{ item.location }} </b-col>
       </b-row>
     </b-container>

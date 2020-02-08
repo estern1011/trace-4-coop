@@ -19,6 +19,7 @@
 
 <script>
 export default {
+  props: ["_id"],
   data() {
     return {
       items: [
