@@ -2,14 +2,22 @@
   <div id="app">
     <b-container class="bv-example-row">
       <b-row>
-        <b-col> <h5> Company Name </h5> </b-col>
-        <b-col> <h5> Location </h5> </b-col>
+        <b-col>
+          <h5>Company Name</h5>
+        </b-col>
+        <b-col>
+          <h5>Location</h5>
+        </b-col>
       </b-row>
       <b-row v-for="item in this.info" :key="item._id">
-        <router-link :to="{ name: 'companies', params: {company_name: item.company_name, id: item._id}}">
-          <b-col> {{ item.company_name }} </b-col>
+        <b-col>
+          <router-link
+            :to="{ name: 'companies', params: {company_name: item.company_name, id: item._id}}">
+            {{ item.company_name }}
           </router-link>
-        <b-col> {{ item.location }} </b-col>
+        </b-col>
+
+        <b-col>{{ item.location }}</b-col>
       </b-row>
     </b-container>
   </div>
