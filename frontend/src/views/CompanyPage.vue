@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p>{{ $route.params.id }} </p>
     <b-card
       title="Card Title"
       img-src="https://picsum.photos/600/300/?image=25"
