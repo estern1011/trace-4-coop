@@ -1,1 +1,5 @@
 backend/venv/
+.Python
+include/
+lib/
+bin/
