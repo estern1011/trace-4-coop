@@ -36,13 +36,15 @@ def get_companies():
         print(company_data)
         return jsonify(message="Found {} companies".format(len(company_data)), data=company_data), 200
 
-@app.route('/companies/<string:company_id>/position', methods=['GET', 'POST'])
+@app.route('/companies/<string:company_id>', methods=['GET', 'POST'])
 def get_postings(company_id):
     if request.method == 'POST':
         form = request.json
         DB.add_new_posting(company_id, form)
         return jsonify(message="Posting added"), 200
     else:
+        print("ahhhhhHHHHHHH")
+        DB.get_all_postings_for_company(company_id)
         company_data = DB.get_all_postings_for_company(company_id)
         return jsonify(message="Found {} postings".format(len(company_data)), data=company_data), 200
 
