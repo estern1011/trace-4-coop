@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <p>homepage</p>
-    {{ this.info }}
+    <b-container class="bv-example-row">
+      <b-row v-for="item in this.info" :key="item._id">
+        <b-col> {{ item.company_name }} </b-col>
+        <b-col> {{ item.location }} </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 <script>
@@ -12,12 +16,12 @@ export default {
   data() {
     return {
       info: {}
-    }
+    };
   },
   mounted() {
     axios
       .get("http://localhost:5000/companies")
-      .then(response => (this.info = response.data));
+      .then(response => (this.info = response.data.data));
   }
 };
 </script>
