@@ -1,18 +1,25 @@
 <template>
   <div id="app">
-    <NavBar/>
+    <NavBar />
   </div>
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
+import Vue from "vue";
+import NavBar from "./components/NavBar.vue";
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     NavBar
   }
-}
+};
 </script>
 
 <style>
