@@ -60,4 +60,4 @@ def get_reviews(company_id, position_id):
 
 
 if __name__ == "__main__":
-    app.run(host= '10.85.165.83', port=5000)
+    app.run(host= 'localhost', port=5000)
