@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <NavBar />
-    <!-- {companies_page.map(company => <CompanyPage />)} -->
     <router-view></router-view>
   </div>
 </template>
