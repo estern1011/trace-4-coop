@@ -2,10 +2,13 @@ from flask import Flask, redirect, url_for, render_template, flash, request, jso
 from DB_interface.DB_interface import DatabaseConnection
 from flask_cors import CORS
 import json
+import clearbit
+import config
 app = Flask(__name__)
 CORS(app)
 # REPLACE WITH THE DB INTERFACE
 DB = DatabaseConnection()
+clearbit.key = config.clearbit_api_key
 
 """
 APIs:
@@ -28,6 +31,9 @@ def get_companies():
     print(request)
     if request.method == 'POST':
         form = request.json
+        logo = clearbit.NameToDomain.find(name=form["name"])
+        if logo is not None:
+            form = {**form, **logo}
         DB.add_new_company(form)
         return jsonify(message="Company added"), 200
     else:
