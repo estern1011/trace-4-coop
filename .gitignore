@@ -5,3 +5,4 @@ lib/
 bin/
 *.pyc
 ./.gitignore
+backend/app/config.py
