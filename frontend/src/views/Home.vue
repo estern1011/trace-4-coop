@@ -13,7 +13,7 @@
       </b-row>
       <b-row v-for="item in this.info" :key="item._id">
         <b-col>
-          <img src=item.logo />
+          <img :src= item.logo />
         </b-col>
         <b-col>
           <router-link
@@ -22,7 +22,7 @@
           </router-link>
         </b-col>
 
-        <b-col><a href="domain"> {{ item.domain }} </a></b-col>
+        <b-col><a :href= item.domain> {{ item.domain }} </a></b-col>
       </b-row>
     </b-container>
   </div>
