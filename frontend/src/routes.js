@@ -1,16 +1,15 @@
 import About from './views/About'
 import Home from './views/Home'
-import Form from './views/Form'
+import InterviewForm from './views/InterviewForm'
+import CoopForm from './views/CoopForm'
 import CompanyPage from './views/CompanyPage'
-import Position from './views/Position'
-
 
 const routes = [
   { path: "/", component: Home },
   { path: "/about", component: About },
-  { path: "/submit", component: Form },
-  { path: "/companies/:company_name", name: 'companies', component: CompanyPage},
-  { path: "/companies/:company_name/position/:position_name", name: 'position', component: Position}
+  { path: "/interview", component: InterviewForm },
+  { path: "/coop", component: CoopForm },
+  { path: "/companies/:company_name", name: 'companies', component: CompanyPage}
 ];
 
 export default routes

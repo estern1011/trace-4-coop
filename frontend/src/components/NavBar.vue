@@ -9,17 +9,9 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-            <b-nav-item to="/about">About</b-nav-item>
-            <b-nav-item to="/submit">Submit a Review</b-nav-item>
-        </b-navbar-nav>
-
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-          <b-nav-item>
-            <router-link to="/login">
-              <b-nav-item href="/login">Log In</b-nav-item>
-            </router-link>
-          </b-nav-item>
+          <b-nav-item to="/about">About</b-nav-item>
+          <b-nav-item to="/interview">Submit an Interview Review</b-nav-item>
+          <b-nav-item to="/coop">Submit a Co-op Review</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
