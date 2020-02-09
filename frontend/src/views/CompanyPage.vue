@@ -13,14 +13,14 @@
           <h5>Position</h5>
         </b-col>
         <b-col>
-          <h5>id</h5>
+          <h5>Location</h5>
         </b-col>
       </b-row>
       <b-row v-for="item in this.info" :key="item._id">
         <b-col>
           <p>{{item.position_name}}</p>
         </b-col>
-        <b-col>{{ item._id }}</b-col>
+        <b-col>{{ item.location }}</b-col>
       </b-row>
     </b-container>
   </div>
