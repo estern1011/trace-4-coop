@@ -34,6 +34,13 @@
           </li>
         </template>
       </autocomplete>
+      
+      <div class="field">
+        <label class="label">Please describe a regular day on the job</label>
+        <div class="control">
+          <textarea v-model="form.message" placeholder="type here"></textarea>
+        </div>
+      </div>
 
       <div class="field">
         <label class="label">Does this company offer full-time return positions?</label>
@@ -50,28 +57,14 @@
         </div>
       </div>
 
-      <div class="field">
-        <label class="label">Please describe a regular day on the job</label>
-        <div class="control">
-          <textarea v-model="form.message" placeholder="add multiple lines"></textarea>
-        </div>
-      </div>
-      <input class="button is-primary margin-bottom" type="submit" @click.prevent="fakeSubmit" />
+      <input class="button is-primary margin-bottom" type="submit" @click.prevent="onSubmit" />
     </form>
 
-    <transition name="fade" mode="out-in">
-      <article class="message is-primary" v-show="showSubmitFeedback">
-        <div class="message-header">
-          <p>Fake Send Status:</p>
-        </div>
-        <div class="message-body">Successfully Submitted!</div>
-      </article>
-    </transition>
 
     <hr />
 
-    <h5>JSON</h5>
-    <pre><code>{{form}}</code></pre>
+    <!-- <h5>JSON</h5>
+    <pre><code>{{form}}</code></pre> -->
   </section>
 </template>
 
@@ -85,10 +78,10 @@ export default {
       positions: {},
       form: {
         type: "co-op",
-        companyName: "",
-        position: "",
-        rating: 0,
-        message: ""
+        company_id: "",
+        position_id: "",
+        message: "",
+        offer:"false"
       },
       showSubmitFeedback: false
     };
@@ -108,12 +101,12 @@ export default {
       return result.company_name;
     },
     handleCompanySubmit(input) {
-      this.company_id = this.companies.filter(item => {
+      this.form.company_id = this.companies.filter(item => {
         return item.company_name === input.company_name;
       })[0]._id;
-      console.log(this.company_id);
+      console.log(this.form.company_id);
       this.positions = axios
-        .get("http://localhost:5000/companies/" + this.company_id)
+        .get("http://localhost:5000/companies/" + this.form.company_id)
         .then(response => (this.positions = response.data.data));
     },
     positionSearch(input) {
@@ -130,16 +123,16 @@ export default {
       return result.position_name;
     },
     handlePositionSubmit(input) {
-      this.position_id = this.position.filter(item => {
+      this.form.position_id = this.positions.filter(item => {
         return item.position_name === input.position_name;
       })[0]._id;
-      console.log(this.position_id);
+      console.log(this.form.poisition_id);
     },
-    fakeSubmit() {
-      this.showSubmitFeedback = true;
-      setTimeout(() => {
-        this.showSubmitFeedback = false;
-      }, 3000);
+    onSubmit() {
+      axios.post(`http://localhost:5000/companies/${this.form.company_id}/position/${this.form.position_id}`, this.form)
+      .then(response => (this.result = response.status));
+      this.$router.push("/thanks");
+
     }
   },
   mounted() {

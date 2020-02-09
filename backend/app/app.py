@@ -31,7 +31,7 @@ def get_companies():
     print(request)
     if request.method == 'POST':
         form = request.json
-        logo = clearbit.NameToDomain.find(name=form["name"])
+        logo = clearbit.NameToDomain.find(name=form["company_name"])
         if logo is not None:
             form = {**form, **logo}
         DB.add_new_company(form)
@@ -53,12 +53,13 @@ def get_postings(company_id):
 
 @app.route('/companies/<string:company_id>/position/<string:position_id>', methods=['GET', 'POST'])
 def get_reviews(company_id, position_id):
+    print(company_id, position_id)
     if request.method == 'POST':
         form = request.json
         DB.add_new_review(company_id, position_id, form)
         return jsonify(message="Review added"), 200
     else:
-        company_data = DB.get_all_postings_for_company(company_id, position_id)
+        company_data = DB.get_all_reviews_for_posting(position_id)
         return jsonify(message="Found {} postings".format(len(company_data)), data=company_data), 200   
 
 
