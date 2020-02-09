@@ -30,6 +30,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      company_id: "",
       form: {
         position_name: "",
         location: ""
@@ -37,15 +38,15 @@ export default {
     };
   },
   mounted() {
-    const company_id = this.$route.params.id;
-    console.log(company_id);
+    this.company_id = this.$route.params.id;
+    console.log(this.company_id);
   },
 
   methods: {
     onSubmit() {
       axios
         .post(
-          `http://localhost:5000/companies/${company_id}`,
+          `http://localhost:5000/companies/${this.company_id}`,
           this.form
         )
         .then(response => (this.result = response.status));

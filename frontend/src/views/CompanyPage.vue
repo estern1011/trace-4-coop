@@ -3,9 +3,9 @@
     <p>{{ $route.params.id }}</p>
     <p>{{this.name}}</p>
     <p>
-      Don't see your position? Add your position
+      Don't see your position? Add your position:
       <router-link
-        :to="{ name: `companies/${$route.params.id}`, params: {company_name: this.name, id: $route.params.id}}"
+        :to="{ name: `positions`, params: {company_name: this.name, id: this.company_id}}"
       >here</router-link>.
     </p>
     <b-container class="bv-example-row">
@@ -34,21 +34,22 @@ export default {
   name: "Home",
   data() {
     return {
+      company_id: "",
       info: {},
       name: ""
     };
   },
   mounted() {
-    const company_id = this.$route.params.id;
-    console.log(company_id);
+    this.company_id = this.$route.params.id;
+    console.log(this.company_id);
 
     axios
-      .get(`http://localhost:5000/companies/${company_id}`)
+      .get(`http://localhost:5000/companies/${this.company_id}`)
       .then(response => (this.info = response.data.data));
 
     axios.get("http://localhost:5000/companies").then(response => {
       this.name = response.data.data.filter(company => {
-        return company._id === company_id;
+        return company._id === this.company_id;
       })[0].company_name;
     });
   }
