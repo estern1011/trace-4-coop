@@ -1,5 +1,17 @@
 # Review Your Co-op
 
+## Inspiration
+- It's very hard to get information about co-op interview processes and what it is like to co-op in a certian role at a specific company. 
+    - Glassdoor is a thing, but there are barriers, and at large companies it can be hard to see specifics regarding certain roles and locations. 
+
+## Features
+- Add companies that aren't in the list
+    - The backend will hit clearbit's API in order to get the domain address and logo for the company. 
+- Add positions for companies
+- Add reviews for positions at companies
+    - The forms have auto-completion for looking up specific companies and roles
+- All stored in MongoDB
+
 ## How to run
 - In /backend
     - Set up a python3 virtual environment: python3 -m venv venv
