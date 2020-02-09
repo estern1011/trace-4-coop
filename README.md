@@ -1,5 +1,9 @@
 # Review Your Co-op
 
+## Video
+Here's what the project looks like when it's running!
+- https://vimeo.com/390266154
+
 ## Inspiration
 - It's very hard to get information about co-op interview processes and what it is like to co-op in a certian role at a specific company. 
     - Glassdoor is a thing, but there are barriers, and at large companies it can be hard to see specifics regarding certain roles and locations. 
