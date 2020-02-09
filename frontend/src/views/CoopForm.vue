@@ -24,8 +24,8 @@
         :search="positionSearch"
         :get-result-value="getPositionResultValue"
         @submit="handlePositionSubmit"
-        placeholder="Search for a company"
-        aria-label="Search for a company"
+        placeholder="Search for a position"
+        aria-label="Search for a position"
         :v-model="form.positionName"
       >
         <template #result="{ result, props }">
