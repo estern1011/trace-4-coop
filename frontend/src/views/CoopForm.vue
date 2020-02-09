@@ -141,7 +141,7 @@ export default {
       this.position_id = this.position.filter(item => {
         return item.position_name === input.position_name;
       })[0]._id;
-      console.log(this.company_id);
+      console.log(this.position_id);
     },
     fakeSubmit() {
       this.showSubmitFeedback = true;
