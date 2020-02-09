@@ -1,7 +1,6 @@
 <template>
   <div>
-    <p>{{ $route.params.id }}</p>
-    <p>{{this.name}}</p>
+    <h2>{{this.name}}</h2>
     <p>
       Don't see your position? Add your position:
       <router-link
@@ -19,7 +18,7 @@
       </b-row>
       <b-row v-for="item in this.info" :key="item._id">
         <b-col>
-          <p>{{item.position}}</p>
+          <p>{{item.position_name}}</p>
         </b-col>
         <b-col>{{ item._id }}</b-col>
       </b-row>
