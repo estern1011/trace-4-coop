@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h3> Don't see your company? Add your company <a href="/company">here</a>.</h3>
     <b-container class="bv-example-row">
       <b-row>
         <b-col>
