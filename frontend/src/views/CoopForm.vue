@@ -19,8 +19,8 @@
         </template>
       </autocomplete>
 
-        <label class="label">What position was this for?</label>
-        <autocomplete
+      <label class="label">What position was this for?</label>
+      <autocomplete
         :search="positionSearch"
         :get-result-value="getPositionResultValue"
         @submit="handlePositionSubmit"
@@ -30,16 +30,16 @@
       >
         <template #result="{ result, props }">
           <li v-bind="props" class="autocomplete-result wiki-result">
-            <div class="wiki-title">{{ result.company_name }}</div>
+            <div class="wiki-title">{{ result.position_name }}</div>
           </li>
         </template>
       </autocomplete>
 
       <!-- <div class="field">
-        <label class="label">What position was this for?</label> -->
-        <!-- <div class="control">
+      <label class="label">What position was this for?</label>-->
+      <!-- <div class="control">
           <input class="input" type="text" v-model="form.position" />
-        </div> -->
+      </div>-->
       <!-- </div> -->
 
       <div class="field">
@@ -121,8 +121,8 @@ export default {
       })[0]._id;
       console.log(this.company_id);
       this.positions = axios
-      .get("http://localhost:5000/companies/" + this.company_id)
-      .then(response => (this.positions = response.data.data));
+        .get("http://localhost:5000/companies/" + this.company_id)
+        .then(response => (this.positions = response.data.data));
     },
     positionSearch(input) {
       if (input.length < 1) {
