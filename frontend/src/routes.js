@@ -6,6 +6,7 @@ import CompanyPage from './views/CompanyPage'
 import Thanks from './views/Thanks'
 import CompanyForm from './views/CompanyForm'
 import PositionForm from './views/PositionForm'
+import Position from './views/Position'
 
 const routes = [
   { path: "/", component: Home },
@@ -15,7 +16,8 @@ const routes = [
   { path: "/companies/:company_name", name: 'companies', component: CompanyPage},
   { path: "/thanks", component: Thanks},
   { path: "/company", component: CompanyForm},
-  { path: "/company/:company_name/add_position", name: 'positions', component: PositionForm}
+  { path: "/company/:company_name/add_position", name: 'positions', component: PositionForm},
+  { path: "/companies/:company_name/:position_name/position", name: 'reviews', component: Position}
 ];
 
 export default routes

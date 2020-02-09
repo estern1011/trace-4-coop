@@ -18,7 +18,11 @@
       </b-row>
       <b-row v-for="item in this.info" :key="item._id">
         <b-col>
-          <p>{{item.position_name}}</p>
+          <p><router-link :to="{ name: `reviews`, params: {company_name: this.name, position_name: item.position_name, 
+          company_id: this.company_id, position_id: item._id}}">
+            {{item.position_name}}
+            </router-link>
+            </p>
         </b-col>
         <b-col>{{ item.location }}</b-col>
       </b-row>
