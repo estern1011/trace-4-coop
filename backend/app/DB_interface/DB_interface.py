@@ -41,7 +41,7 @@ class DatabaseConnection():
             lis.append(temp)
         return lis
 
-    def get_all_postings_for_posting(self, position_id):
+    def get_all_reviews_for_posting(self, position_id):
         res = self.review_store.find({'position_id': position_id})
         lis = []
         for x in res:
