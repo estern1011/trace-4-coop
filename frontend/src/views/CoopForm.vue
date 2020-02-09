@@ -19,12 +19,28 @@
         </template>
       </autocomplete>
 
-      <div class="field">
         <label class="label">What position was this for?</label>
-        <div class="control">
+        <autocomplete
+        :search="positionSearch"
+        :get-result-value="getPositionResultValue"
+        @submit="handlePositionSubmit"
+        placeholder="Search for a company"
+        aria-label="Search for a company"
+        :v-model="form.positionName"
+      >
+        <template #result="{ result, props }">
+          <li v-bind="props" class="autocomplete-result wiki-result">
+            <div class="wiki-title">{{ result.company_name }}</div>
+          </li>
+        </template>
+      </autocomplete>
+
+      <!-- <div class="field">
+        <label class="label">What position was this for?</label> -->
+        <!-- <div class="control">
           <input class="input" type="text" v-model="form.position" />
-        </div>
-      </div>
+        </div> -->
+      <!-- </div> -->
 
       <div class="field">
         <label class="label">Does this company offer full-time return positions?</label>
@@ -73,6 +89,7 @@ export default {
   data() {
     return {
       companies: {},
+      positions: {},
       form: {
         type: "co-op",
         companyName: "",
@@ -103,23 +120,26 @@ export default {
         return item.company_name === input.company_name;
       })[0]._id;
       console.log(this.company_id);
+      this.positions = axios
+      .get("http://localhost:5000/companies/" + this.company_id)
+      .then(response => (this.positions = response.data.data));
     },
     positionSearch(input) {
       if (input.length < 1) {
         return [];
       }
-      return this.companies.filter(company => {
-        return company.company_name
+      return this.positions.filter(position => {
+        return position.position_name
           .toLowerCase()
           .startsWith(input.toLowerCase());
       });
     },
     getPositionResultValue(result) {
-      return result.company_name;
+      return result.position_name;
     },
     handlePositionSubmit(input) {
-      this.company_id = this.companies.filter(item => {
-        return item.company_name === input.company_name;
+      this.position_id = this.position.filter(item => {
+        return item.position_name === input.position_name;
       })[0]._id;
       console.log(this.company_id);
     },

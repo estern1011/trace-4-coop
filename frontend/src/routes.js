@@ -3,8 +3,6 @@ import Home from './views/Home'
 import InterviewForm from './views/InterviewForm'
 import CoopForm from './views/CoopForm'
 import CompanyPage from './views/CompanyPage'
-import Position from './views/Position'
-
 
 const routes = [
   { path: "/", component: Home },
