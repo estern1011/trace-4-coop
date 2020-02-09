@@ -11,6 +11,7 @@
         <b-navbar-nav>
           <b-nav-item to="/about">About</b-nav-item>
           <b-nav-item to="/interview">Submit an Interview Review</b-nav-item>
+          <b-nav-item to="/company">Don't see your company?</b-nav-item>
           <b-nav-item to="/coop">Submit a Co-op Review</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
