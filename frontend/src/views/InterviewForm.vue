@@ -3,73 +3,47 @@
     <form>
       <h1 class="title is-1">{{form.formName}}</h1>
 
+      <label class="label">What's the company name?</label>
+      <autocomplete
+        :search="companySearch"
+        :get-result-value="getCompanyResultValue"
+        @submit="handleCompanySubmit"
+        placeholder="Search for a company"
+        aria-label="Search for a company"
+        :v-model="form.companyName"
+      >
+        <template #result="{ result, props }">
+          <li v-bind="props" class="autocomplete-result wiki-result">
+            <div class="wiki-title">{{ result.company_name }}</div>
+          </li>
+        </template>
+      </autocomplete>
+
+      <label class="label">What position was this for?</label>
+      <autocomplete
+        :search="positionSearch"
+        :get-result-value="getPositionResultValue"
+        @submit="handlePositionSubmit"
+        placeholder="Search for a position"
+        aria-label="Search for a position"
+        :v-model="form.positionName"
+      >
+        <template #result="{ result, props }">
+          <li v-bind="props" class="autocomplete-result wiki-result">
+            <div class="wiki-title">{{ result.position_name }}</div>
+          </li>
+        </template>
+      </autocomplete>
+
       <div class="field">
-        <label class="label">What's the company name?</label>
+        <label class="label">Please give a description of the interview process</label>
         <div class="control">
-          <input class="input" type="text" v-model="form.companyName" />
+          <textarea v-model="form.message" placeholder="type here"></textarea>
         </div>
       </div>
 
       <div class="field">
-        <label class="label">Where is it located? (eg. Boston, MA)</label>
-        <div class="control">
-          <input class="input" type="text" v-model="form.location" />
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">What position was this for?</label>
-        <div class="control">
-          <input class="input" type="text" v-model="form.position" />
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">How difficult was the interview? (5 being most difficult)</label>
-        <div class="control">
-          <div class="select">
-            <select v-model="form.interviewDifficulty">
-              <option v-for="difficulty in [1,2,3,4,5]" :key="difficulty">{{difficulty}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">Types of Interview Questions</label>
-        <div class="control">
-          <label>
-            <input type="checkbox" value="algo" v-model="form.questionType" />
-            Algorithms
-          </label>
-          <br />
-          <label>
-            <input type="checkbox" value="behavioral" v-model="form.questionType" />
-            Behavioral
-          </label>
-          <br />
-          <label>
-            <input type="checkbox" value="database" v-model="form.questionType" />
-            Database Design
-          </label>
-          <br />
-          <label>
-            <input type="checkbox" value="systems" v-model="form.questionType" />
-            System Design
-          </label>
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">How would you rate the interview? (10 being perfect)</label>
-        <div class="control">
-          <h4 class="title is-4">{{form.rating}} / 10</h4>
-          <input type="range" min="0" max="10" v-model="form.rating" />
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="label">Did you receive an offer?</label>
+        <label class="label">Did you get an offer?</label>
         <div class="control">
           <label>
             <input type="radio" value="true" v-model="form.offer" />
@@ -84,69 +58,105 @@
       </div>
 
       <div class="field">
-        <label class="label">Does this company offer full-time return positions?</label>
+        <label class="label">Were you happy with the offer?</label>
         <div class="control">
           <label>
-            <input type="radio" value="true" v-model="form.offer" />
+            <input type="radio" value="true" v-model="form.happy" />
             Yes
           </label>
           <br />
           <label>
-            <input type="radio" value="false" v-model="form.offer" />
+            <input type="radio" value="false" v-model="form.happy" />
             No
           </label>
         </div>
       </div>
 
-      <div class="field">
-        <label class="label">Please describe a regular day on the job</label>
-        <div class="control">
-          <textarea v-model="message" placeholder="add multiple lines"></textarea>
-        </div>
-      </div>
-      <input class="button is-primary margin-bottom" type="submit" @click.prevent="fakeSubmit" />
+      <input class="button is-primary margin-bottom" type="submit" @click.prevent="onSubmit" />
     </form>
 
-    <transition name="fade" mode="out-in">
-      <article class="message is-primary" v-show="showSubmitFeedback">
-        <div class="message-header">
-          <p>Fake Send Status:</p>
-        </div>
-        <div class="message-body">Successfully Submitted!</div>
-      </article>
-    </transition>
-
     <hr />
-
+<!-- 
     <h5>JSON</h5>
-    <pre><code>{{form}}</code></pre>
+    <pre><code>{{form}}</code></pre> -->
   </section>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
+      companies: {},
+      positions: {},
       form: {
         type: "interview",
-        companyName: "",
-        location: "",
-        position: "",
-        difficulty: "1",
-        offer: "",
-        questionType: [],
-        rating: 0
+        company_id: "",
+        position_id: "",
+        message: "",
+        offer: "false",
+        happy: "false"
       },
       showSubmitFeedback: false
     };
   },
   methods: {
-    fakeSubmit() {
-      this.showSubmitFeedback = true;
-      setTimeout(() => {
-        this.showSubmitFeedback = false;
-      }, 3000);
+    companySearch(input) {
+      if (input.length < 1) {
+        return [];
+      }
+      return this.companies.filter(company => {
+        return company.company_name
+          .toLowerCase()
+          .startsWith(input.toLowerCase());
+      });
+    },
+    getCompanyResultValue(result) {
+      return result.company_name;
+    },
+    handleCompanySubmit(input) {
+      this.form.company_id = this.companies.filter(item => {
+        return item.company_name === input.company_name;
+      })[0]._id;
+      console.log(this.form.company_id);
+      this.positions = axios
+        .get("http://localhost:5000/companies/" + this.form.company_id)
+        .then(response => (this.positions = response.data.data));
+    },
+    positionSearch(input) {
+      if (input.length < 1) {
+        return [];
+      }
+      return this.positions.filter(position => {
+        return position.position_name
+          .toLowerCase()
+          .startsWith(input.toLowerCase());
+      });
+    },
+    getPositionResultValue(result) {
+      return result.position_name;
+    },
+    handlePositionSubmit(input) {
+      this.form.position_id = this.positions.filter(item => {
+        return item.position_name === input.position_name;
+      })[0]._id;
+      console.log(this.form.poisition_id);
+    },
+    onSubmit() {
+      axios
+        .post(
+          `http://localhost:5000/companies/${this.form.company_id}/position/${this.form.position_id}`,
+          this.form
+        )
+        .then(response => (this.result = response.status));
+      this.$router.push("/thanks");
     }
+  },
+  mounted() {
+    axios
+      .get("http://localhost:5000/companies")
+      .then(response => (this.companies = response.data.data));
   }
 };
 </script>

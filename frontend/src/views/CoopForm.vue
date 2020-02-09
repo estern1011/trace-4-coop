@@ -34,6 +34,13 @@
           </li>
         </template>
       </autocomplete>
+      
+      <div class="field">
+        <label class="label">Please describe a regular day on the job</label>
+        <div class="control">
+          <textarea v-model="form.message" placeholder="type here"></textarea>
+        </div>
+      </div>
 
       <div class="field">
         <label class="label">Does this company offer full-time return positions?</label>
@@ -50,20 +57,14 @@
         </div>
       </div>
 
-      <div class="field">
-        <label class="label">Please describe a regular day on the job</label>
-        <div class="control">
-          <textarea v-model="form.message" placeholder="add multiple lines"></textarea>
-        </div>
-      </div>
       <input class="button is-primary margin-bottom" type="submit" @click.prevent="onSubmit" />
     </form>
 
 
     <hr />
 
-    <h5>JSON</h5>
-    <pre><code>{{form}}</code></pre>
+    <!-- <h5>JSON</h5>
+    <pre><code>{{form}}</code></pre> -->
   </section>
 </template>
 

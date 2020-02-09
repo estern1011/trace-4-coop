@@ -31,7 +31,7 @@ def get_companies():
     print(request)
     if request.method == 'POST':
         form = request.json
-        logo = clearbit.NameToDomain.find(name=form["name"])
+        logo = clearbit.NameToDomain.find(name=form["company_name"])
         if logo is not None:
             form = {**form, **logo}
         DB.add_new_company(form)
