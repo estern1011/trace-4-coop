@@ -35,13 +35,6 @@
         </template>
       </autocomplete>
 
-      <!-- <div class="field">
-      <label class="label">What position was this for?</label>-->
-      <!-- <div class="control">
-          <input class="input" type="text" v-model="form.position" />
-      </div>-->
-      <!-- </div> -->
-
       <div class="field">
         <label class="label">Does this company offer full-time return positions?</label>
         <div class="control">
@@ -93,7 +86,6 @@ export default {
       form: {
         type: "co-op",
         companyName: "",
-        location: "",
         position: "",
         rating: 0,
         message: ""
