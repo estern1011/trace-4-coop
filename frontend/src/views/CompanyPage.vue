@@ -2,7 +2,7 @@
   <div>
     <p>{{ $route.params.id }}</p>
     <b-card
-      title="Card Title"
+      :title= "this.name" 
       img-src="https://picsum.photos/600/300/?image=25"
       img-alt="Image"
       img-top
@@ -36,7 +36,8 @@ export default {
   name: "Home",
   data() {
     return {
-      info: {}
+      info: {},
+      name: ""
     };
   },
   mounted() {
@@ -47,6 +48,12 @@ export default {
     axios
       .get(`http://localhost:5000/companies/${company_id}`)
       .then(response => (this.info = response.data.data));
+
+    axios
+      .get("http://localhost:5000/companies")
+      .then(response => {
+        this.name = response.data.data.filter((company) => {return company._id === company_id})[0].company_name;
+      })
   }
 };
 
