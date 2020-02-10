@@ -17,6 +17,7 @@ Here's what the project looks like when it's running!
 - All stored in MongoDB
 
 ## How to run
+- Run MongoDB (default port 27017)
 - In /backend
     - Set up a python3 virtual environment: python3 -m venv venv
     - Enter the virtual environment: source venv/bin/activate
